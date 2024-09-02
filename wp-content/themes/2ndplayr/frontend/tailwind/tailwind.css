@@ -1,0 +1,118 @@
+@import url('tailwindcss/base');
+@import url('tailwindcss/components');
+@import url('tailwindcss/utilities');
+
+@layer base {
+    nav ul li {
+        @apply hover:text-sky transition duration-200;
+    }
+
+    footer ul li {
+        @apply text-white hover:text-sky pb-4 mt-4 border-b border-night;
+    }
+
+    footer ul li:last-child {
+        @apply border-none;
+    }
+
+    .content h2 {
+        @apply text-white text-2xl font-bold font-serif uppercase mb-4 flex items-center;
+    }
+
+    .content h3 {
+        @apply text-white text-xl font-bold font-serif uppercase mb-4 flex items-center;
+    }
+
+    .content h4 {
+        @apply text-white text-lg font-bold font-serif uppercase mb-4 flex items-center;
+    }
+
+    .content h5 {
+        @apply text-white text-md font-bold font-serif uppercase mb-4 flex items-center;
+    }
+
+    .content h6 {
+        @apply text-white text-sm font-bold font-serif uppercase mb-4 flex items-center;
+    }
+
+    .content p {
+        @apply text-lg text-white pb-8 font-sans font-light leading-dynamic;
+    }
+
+    /* Style for the headings with hash symbol */
+    h1[id],
+    h2[id],
+    h3[id],
+    h4[id],
+    h5[id],
+    h6[id] {
+        @apply relative cursor-pointer; /* No need for extra padding */
+
+        transition: opacity 0.3s ease; /* Add transition for opacity */
+    }
+
+    /* Style the hash symbol */
+    .hash-symbol {
+        margin-left: 0.5rem; /* Space between heading and hash symbol */
+        color: #86a7dc; /* Color for the hash symbol */
+        font-size: 1.5rem; /* Fixed font size for the hash symbol */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        font-style: italic;
+    }
+
+    /* Show the hash symbol on hover and reduce heading opacity */
+    h1[id]:hover .hash-symbol,
+    h2[id]:hover .hash-symbol,
+    h3[id]:hover .hash-symbol,
+    h4[id]:hover .hash-symbol,
+    h5[id]:hover .hash-symbol,
+    h6[id]:hover .hash-symbol {
+        opacity: 1; /* Show the hash symbol on hover */
+    }
+
+    h1[id]:hover,
+    h2[id]:hover,
+    h3[id]:hover,
+    h4[id]:hover,
+    h5[id]:hover,
+    h6[id]:hover {
+        opacity: 0.8; /* Reduce opacity of the heading on hover */
+    }
+
+    /* Notification style */
+    .notification {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+        z-index: 10; /* Ensure it is above other content */
+    }
+
+    .notification.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+.flex-mass {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+
+
+
