@@ -36,7 +36,7 @@ $args = array(
     <?php
     get_template_part('partials/blog-single/hero', null, $args);
     ?>
-    <section class="content bg-night">
+    <!-- <section class="content bg-night">
         <div class="max-w-212 mx-auto px-8">
             <?php
             // This ensures the_content filter is applied
@@ -44,7 +44,7 @@ $args = array(
             ?>
         </div>
         <div id="notification" class="notification">Link copied to clipboard!</div>
-    </section>
+    </section> -->
     <section class="bg-night pb-8">
         <div class="max-w-212 mx-auto p-8">
             <div class="flex items-center w-full mb-12">
