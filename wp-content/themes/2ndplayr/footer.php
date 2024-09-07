@@ -19,10 +19,10 @@
         <div class="flex flex-col w-full md-2:w-4/5 mx-auto mb-6 md-2:mb-0">
             <h3 class="text-2xl font-bold text-white mb-4">Quick Nav</h3>
             <?php
-            wp_nav_menu(array(
+            wp_nav_menu([
                 'theme_location' => 'footer-menu',
                 'menu_class' => 'text-white list-none p-0 w-full',
-            ));
+            ]);
             ?>
         </div>
 
