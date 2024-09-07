@@ -5,8 +5,6 @@ $author_id = get_the_author_meta('ID');
 $author_twitter = get_field('twitter', 'user_' . $author_id);
 $author_facebook = get_field('facebook', 'user_' . $author_id);
 $author_linkedin = get_field('linkedin', 'user_' . $author_id);
-
-// Get the actual post count for the current author
 $author_post_count = count_user_posts($author_id);
 ?>
 
@@ -71,11 +69,10 @@ $author_post_count = count_user_posts($author_id);
             <div class="flex-grow border-t-2 border-red-500 ml-4"></div>
         </div>
         <?php
-        // Set up the query to get posts by the current author
         $args = array(
             'author' => $author_id,
             'post_type' => 'post',
-            'posts_per_page' => 10, // Adjust the number of posts per page as needed
+            'posts_per_page' => 10,
         );
         $author_posts = new WP_Query($args);
 

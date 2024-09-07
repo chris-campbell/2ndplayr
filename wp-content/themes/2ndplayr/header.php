@@ -14,7 +14,7 @@
                 <?php sp_file_get_contents('main-logo.svg'); ?>
             </a>
 
-            <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
+            <button id="menu-toggle" type="button" class="text-white md:hidden focus:outline-none">
                 <svg id="hamburger" class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -38,9 +38,9 @@
 
     <script>
         document.getElementById('menu-toggle').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            var hamburger = document.getElementById('hamburger');
-            var close = document.getElementById('close');
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger');
+            const close = document.getElementById('close');
             menu.classList.toggle('hidden');
             hamburger.classList.toggle('hidden');
             close.classList.toggle('hidden');

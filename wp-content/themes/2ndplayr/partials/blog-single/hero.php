@@ -1,5 +1,4 @@
 <?php
-// Ensure $args is defined and accessible
 if (isset($args)) {
     $hero_image = isset($args['feature_image']) ? $args['feature_image'] : '';
     $read_time = isset($args['read_time']) ? $args['read_time'] : '';
@@ -17,7 +16,6 @@ $author_name = get_the_author();
 <section class="bg-night py-8">
     <div class="max-w-212 mx-auto px-8">
         <div>
-            <!-- Aspect Ratio Container -->
             <div class="relative w-full pb-[56.25%] shadow-img mb-10 mt-6">
                 <img src="<?php echo esc_url($hero_image); ?>" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover rounded-2xl">
             </div>
