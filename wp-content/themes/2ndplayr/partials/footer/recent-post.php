@@ -1,14 +1,11 @@
 <?php
-// Query the 2 most recent posts
 $recent_posts = new WP_Query(array(
     'posts_per_page' => 2,
     'post_status' => 'publish'
 ));
 
-// Loop through the posts
 if ($recent_posts->have_posts()) :
     while ($recent_posts->have_posts()) : $recent_posts->the_post();
-        // Get the post thumbnail URL
         $post_thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 ?>
         <div class="mb-8 md-2:mb-4 flex">
@@ -18,8 +15,12 @@ if ($recent_posts->have_posts()) :
                 <span class="text-white text-sm"><?php echo get_the_date(); ?></span>
             </div>
         </div>
-    <?php endwhile;
+    <?php
+    endwhile;
     wp_reset_postdata();
-else : ?>
+else :
+    ?>
     <p class="text-gray-400">No recent posts available.</p>
-<?php endif; ?>
+<?php
+endif;
+?>
