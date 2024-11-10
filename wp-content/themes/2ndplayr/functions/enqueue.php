@@ -80,3 +80,17 @@ function save_acf_faq_topics($post_id) {
     }
 }
 add_action('save_post', 'save_acf_faq_topics');
+
+function custom_home_query( $query ) {
+    if ( ! is_admin() && $query->is_main_query() && is_page_template( 'template-home.php' ) ) {
+        // Only run on the custom Home template
+        if ( $query->is_paged ) {
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+            $query->set( 'paged', $paged );
+        }
+        
+        $query->set( 'posts_per_page', 5 ); // Set posts per page to 5
+        $query->set( 'post_status', 'publish' ); // Only show published posts
+    }
+}
+add_action( 'pre_get_posts', 'custom_home_query' );

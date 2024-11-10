@@ -1,12 +1,19 @@
 <?php
-
 /**
  * Template Name: Home
  */
 
-$args = array(
-    'posts_per_page' => 5
-);
+if (is_home() || is_front_page()) {
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+} else {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+}
+
+$args = [
+    'posts_per_page' => 2,
+    'paged'          => $paged,
+    'post_status'    => 'publish'
+];
 
 $query = new WP_Query($args);
 
@@ -18,18 +25,15 @@ get_header();
         <?php
         if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post();
-                get_template_part('partials/home/board-featured-image-article', null, array('post' => $post));
+                get_template_part('partials/home/board-featured-image-article', null, ['post' => $post]);
             endwhile;
-            wp_reset_postdata();
-        else :
-        ?>
-            <p><?php esc_html_e('Sorry, no posts matched your criteria.'); ?></p>
-        <?php
         endif;
+
+        get_template_part('partials/pagination', null, ['query' => $query, 'paged' => $paged]);
         ?>
     </div>
 </main>
 
 <?php
 get_footer();
-?>
+wp_reset_postdata();

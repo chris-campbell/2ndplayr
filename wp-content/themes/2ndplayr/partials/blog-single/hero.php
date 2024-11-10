@@ -1,7 +1,7 @@
 <?php
 if (isset($args)) {
-    $hero_image = isset($args['feature_image']) ? $args['feature_image'] : '';
-    $read_time = isset($args['read_time']) ? $args['read_time'] : '';
+    $hero_image = $args['feature_image'] ?? '';
+    $read_time = $args['read_time'] ?? '';
 } else {
     $hero_image = '';
     $read_time = '';
@@ -9,8 +9,9 @@ if (isset($args)) {
 
 $post_title = get_the_title();
 $author_id = get_the_author_meta('ID');
-$author_url = get_author_posts_url($author_id);
+$author_url = get_author_posts_url(author_id: $author_id);
 $author_name = get_the_author();
+$post_excerpt = get_the_excerpt();
 ?>
 
 <section class="bg-night py-8">
@@ -21,15 +22,16 @@ $author_name = get_the_author();
             </div>
 
             <div class="mt-4">
-                <h1 class="text-white text-4xl font-bold font-serif text-center uppercase">What's so Funny?</h1>
-
+                <h1 class="text-white text-3xl font-bold font-serif text-center capitalize">
+                    <?php
+                    echo esc_html($post_title);
+                    ?>
+                </h1>
                 <div class="text-white flex justify-between items-center mt-4 mb-12 max-w-176 mx-auto flex-col">
-                    <div class="flex items-center">
-                        <img class="w-12 h-12 rounded-full mr-4" src="<?php echo esc_url($hero_image); ?>" alt="Author Image">
-                        <p class='font-sans font-light'><span class='font-semibold'>By</span> <span class='text-sky font-bold'><a href="<?php echo esc_url($author_url); ?>">
-                                    <?php echo esc_html($author_name); ?>
-                                </a></span> • October 21, 2024</p>
-                    </div>
+                    <?php
+                    get_template_part('partials/byline', null, ['author_avatar_url' => get_avatar_url($author_id), 'author_url' => $author_url, 'author_name' => $author_name, 'formatted_date' => get_the_date('F j, Y')]);
+                    ?>
+
                     <div class='flex items-center gap-4'>
                         <span><?php sp_file_get_contents('book-open.svg'); ?></span>
                         <span><?php echo esc_html($read_time); ?> min read</span>
@@ -37,7 +39,9 @@ $author_name = get_the_author();
                 </div>
 
                 <p class="text-lg text-white font-sans font-light italic">
-                    The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!
+                    <?php
+                    echo $post_excerpt;
+                    ?>
                 </p>
             </div>
         </div>

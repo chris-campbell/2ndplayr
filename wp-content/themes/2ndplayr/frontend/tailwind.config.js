@@ -34,6 +34,7 @@ module.exports = {
                 base: '1rem', // 16px, default font size for body text
                 'base-lg': '1.125rem', // 18px, slightly larger for enhanced readability
                 sm: '0.975rem', // 14px, smaller text for captions or less important information
+                xs: '0.875rem', // 14px, smallest text size for fine print or disclaimers
             },
             letterSpacing: {
                 'tight-sm': '0.01em', // 0.16px
@@ -70,6 +71,9 @@ module.exports = {
                 101: '25.3rem',
                 90: '23.563rem'
             },
+            width: {
+                '32-5': '8.125rem',
+            },
             colors: {
                 white: '#F2F2F2',
                 night: '#23282F',
@@ -78,7 +82,8 @@ module.exports = {
                 gloom: '#C6C6C9',
                 storm: '#686A6F',
                 ruby: '#D64343',
-                rubydark: '#ac3636'
+                rubydark: '#ac3636',
+                subruby: '#8f2b2b'
             },
         },
     },
