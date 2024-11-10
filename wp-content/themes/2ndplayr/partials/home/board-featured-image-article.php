@@ -21,57 +21,46 @@ if ($featured_image_id) {
 $author_id = get_the_author_meta('ID');
 $author_url = get_author_posts_url($author_id);
 $author_name = get_the_author();
+$author_avatar_url = get_avatar_url($author_id);
 $post_content = get_the_content();
 $read_time = calculate_read_time($post_content);
 $categories = get_the_category();
+
+$categories = wp_get_post_categories($post_id, array('fields' => 'all'));
+
+$author_args = [
+    'author_avatar_url' => $author_avatar_url, 
+    'author_url' => $author_url, 
+    'author_name' => $author_name, 
+    'formatted_date' => $formatted_date
+];
 ?>
 
 <article class="bg-midnight mb-8 rounded-xl" id="post-<?php echo $post_data->ID; ?>" <?php post_class('', $post_data->ID); ?>>
-    <div class='flex items-center px-8 py-12 gap-12 flex-col md:flex-row'>
+    <div class='flex items-start px-8 py-12 gap-12 flex-col md:flex-row'>
+        <?php
+        get_template_part('partials/square-image', null, ['featured_image_url' => $featured_image_url]);
+        ?>
 
-        <img class="w-full md:w-1/2 aspect-square rounded-xl" src='<?php echo $featured_image_url; ?>' />
         <div class="w-full">
-            <?php 
-            if ( ! empty( $categories ) ) : 
+            <?php
+            get_template_part('partials/categories', null, ['categories' => $categories]);
             ?>
-                <span class="text-sky font-semibold capitalize mb-4 block">
-                    <?php 
-                    $category_links = array();
-                    foreach ( $categories as $category ) {
-                        $category_links[] = esc_html( $category->name );
-                    }
-                    echo implode( ' • ', $category_links );
-                    ?>
-                </span>
-            <?php 
-            endif; 
-            ?>
-            
-            <h2 class='text-2xl pb-4 font-serif font-semibold text-white uppercase md-2:text-3xl'><?php echo $title; ?></h2>
-            <p class='text-white pb-6 text-lg font-light max-w-101'>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.</p>
 
-            <div class='flex items-center mb-8'>
-                <img class="w-12 h-12 rounded-full" src='http://localhost:10034/wp-content/uploads/2024/04/Friendly-typo-inspo.png' />
-                <div>
-                    <span class="font-medium text-white pl-4 pr-1">By</span>
-                    <span class="text-sky font-bold">
-                        <a href="<?php echo esc_url($author_url); ?>">
-                            <?php 
-                            echo $author_name; 
-                            ?>
-                        </a>
-                    </span>
-                    <span class="text-white"> • </span>
-                    <span class="text-white">
-                        <?php 
-                        echo $formatted_date; 
-                        ?>
-                    </span>
-                </div>
-            </div>
+            <h2 class='text-2xl pb-4 font-serif font-semibold text-white capitalize'><?php echo $title; ?></h2>
+            <p class='text-white pb-6 text-lg font-light max-w-101'>
+                <?php 
+                echo $excerpt; 
+                ?>
+            </p>
+
+            <?php
+            get_template_part('partials/byline', null, $author_args);
+            ?>
+
             <div class="flex justify-between items-center">
-                <a href="<?php echo esc_url($post_url); ?>">
-                    <button class="bg-ruby text-white text-base py-2 px-4 rounded-xl hover:bg-rubydark transition duration-200">Read More</button>
+                <a class="bg-ruby text-white text-base py-2 px-4 rounded-xl hover:bg-rubydark transition duration-200" href="<?php echo esc_url($post_url); ?>">
+                    Read More
                 </a>
                 <div class='flex items-center gap-4 text-white'>
                     <span><?php sp_file_get_contents('book-open.svg'); ?></span>

@@ -5,13 +5,17 @@
     <title><?php wp_title(); ?></title>
     <meta charset='<?php bloginfo('charset'); ?>' />
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
     <header class="bg-night border-b-2 border-midnight">
         <div class="flex justify-between items-center p-8 relative">
             <a href="/">
-                <?php sp_file_get_contents('main-logo.svg'); ?>
+                <?php
+                sp_file_get_contents('main-logo.svg', 'w-9/12');
+                ?>
             </a>
 
             <button id="menu-toggle" type="button" class="text-white md:hidden focus:outline-none">
@@ -47,3 +51,4 @@
             menu.classList.toggle('border-b-2');
         });
     </script>
+    
